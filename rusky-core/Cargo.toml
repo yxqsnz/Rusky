@@ -7,3 +7,17 @@ edition = "2021"
 
 [dependencies]
 rusky-core-macros = { path = "../rusky-core-macros" }
+[dependencies.serenity]
+default-features = false
+features = [
+    "builder",
+    "client",
+    "framework",
+    "gateway",
+    "http",
+    "model",
+    "standard_framework",
+    "utils",
+    "rustls_backend",
+]
+version = "0.10"

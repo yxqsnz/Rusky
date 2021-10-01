@@ -1,8 +1,9 @@
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
-    }
+use proc_macro::*;
+use quote::quote;
+#[proc_macro_attribute]
+pub fn command(_: TokenStream, _: TokenStream) -> TokenStream {
+    quote!(
+        fn a() {}
+    )
+    .into()
 }

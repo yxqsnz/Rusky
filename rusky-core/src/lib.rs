@@ -1,8 +1,8 @@
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        let result = 2 + 2;
-        assert_eq!(result, 4);
-    }
+use serenity::Client;
+pub mod builders;
+pub struct Bot {
+    pub client: Client,
+}
+impl Bot {
+    pub fn builder() {}
 }
