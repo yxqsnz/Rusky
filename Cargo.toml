@@ -2,5 +2,6 @@
 members = [
 	"rusky-bot",
 	"rusky-core",
-	"rusky-core-macros"
+	"rusky-core-macros",
+	"rusky-utils"
 ]

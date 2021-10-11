@@ -2,12 +2,15 @@ use serenity::prelude::EventHandler;
 pub struct BotBuilder {
     pub token: Option<String>,
     pub application_id: Option<u64>,
-    pub event_handler: Option<Box<dyn EventHandler>>,
+    pub event_handler: Option<CoreEventHandler>,
 }
+pub struct CoreEventHandler;
+impl EventHandler for CoreEventHandler {}
+
 pub struct BotConfigBuilded {
     pub token: String,
     pub application_id: u64,
-    pub event_handler: Box<dyn EventHandler>,
+    pub event_handler: CoreEventHandler,
 }
 impl Default for BotBuilder {
     fn default() -> Self {
@@ -29,7 +32,7 @@ impl BotBuilder {
         self
     }
 
-    pub fn handler(&mut self, handler: Box<dyn EventHandler>) -> &mut Self {
+    pub fn handler(&mut self, handler: CoreEventHandler) -> &mut Self {
         self.event_handler = Some(handler);
         self
     }
