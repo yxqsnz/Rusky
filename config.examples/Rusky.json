@@ -1,0 +1,8 @@
+{
+  "discord": {
+	"id": 0,
+	"token" : "lol",
+	"auto-sharded": false,
+	"shard-amount": 10
+  }
+}
