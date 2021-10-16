@@ -1,5 +1,0 @@
-discord:
-  token: "..."
-  id: 0
-  shard-amount: 0
-  auto-sharded: true
