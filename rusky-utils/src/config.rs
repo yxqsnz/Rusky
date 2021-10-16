@@ -5,7 +5,7 @@ use figment::{
     Figment,
 };
 use serde::Deserialize;
-use tracing::{debug, instrument};
+use tracing::debug;
 #[derive(Deserialize)]
 pub struct DiscordConfig {
     pub id: u64,
@@ -18,15 +18,14 @@ pub struct RuskyConfig {
     pub discord: DiscordConfig,
 }
 impl RuskyConfig {
-    #[instrument]
     pub fn collect_from_world() -> Result<Self> {
         debug!("collecting config from real world... ");
         dotenv().ok();
         Ok(Figment::new()
             .merge(Toml::file("Rusky.toml"))
             .merge(Env::prefixed("RUSKY_"))
-            .merge(Json::file("Rusky.json"))
-            .merge(Yaml::file("Rusky.yaml"))
+            .merge(Json::file("Rusky.json")) 
+            .merge(Yaml::file("Rusky.yml"))
             .extract()?)
     }
 }

@@ -140,18 +140,19 @@ pub fn command(args: TokenStream, input: TokenStream) -> TokenStream {
         (()) => (None);
         ($e:expr) => (Some($e.to_string()));
      }
+     #[allow(non_camel_case_types)]
      pub struct #s_command_name;
      #[serenity::async_trait]
-     impl crate::commands::SlashCommand for #s_command_name {
-        fn data(&self) -> crate::commands::SlashCommandData {
-            crate::commands::SlashCommandData {
+     impl rusky_core::commands::SlashCommand for #s_command_name {
+        fn data(&self) -> rusky_core::commands::SlashCommandData {
+            rusky_core::commands::SlashCommandData {
                 name: #name.to_string(),
                 description: __convert_os_baguios_pra_option_pq_o_caralho_do_quote_nao_mantem_o_caralho_do_option!(#d),
                 // TODO: options attribute.
                 options: None,
             }
         }
-        async fn execute(&self, c: &crate::commands::CommandContext) -> crate::Result<()> {
+        async fn execute(&self, c: rusky_core::commands::CommandContext) -> crate::Result<()> {
             tracing::info!("executing function: {} at command {}", #f_name_s,self.data().name);
             let r = #f_name(c).await?;
             Ok(r)

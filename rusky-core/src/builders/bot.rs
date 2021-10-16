@@ -1,39 +1,20 @@
-use serenity::prelude::EventHandler;
+#[derive(Default)]
 pub struct BotBuilder {
     pub token: Option<String>,
     pub application_id: Option<u64>,
-    pub event_handler: Option<CoreEventHandler>,
 }
-pub struct CoreEventHandler;
-impl EventHandler for CoreEventHandler {}
-
 pub struct BotConfigBuilded {
     pub token: String,
     pub application_id: u64,
-    pub event_handler: CoreEventHandler,
-}
-impl Default for BotBuilder {
-    fn default() -> Self {
-        Self {
-            token: None,
-            application_id: None,
-            event_handler: None,
-        }
-    }
 }
 impl BotBuilder {
-    pub fn token(&mut self, token: String) -> &mut Self {
+    pub fn token(mut self, token: String) -> Self {
         self.token = Some(token);
         self
     }
 
-    pub fn id(&mut self, id: u64) -> &mut Self {
+    pub fn id(mut self, id: u64) -> Self {
         self.application_id = Some(id);
-        self
-    }
-
-    pub fn handler(&mut self, handler: CoreEventHandler) -> &mut Self {
-        self.event_handler = Some(handler);
         self
     }
 
@@ -41,7 +22,6 @@ impl BotBuilder {
         BotConfigBuilded {
             token: self.token.expect("expected a Token."),
             application_id: self.application_id.expect("expected a ID."),
-            event_handler: self.event_handler.expect("expected a EventHandler."),
         }
     }
 }
