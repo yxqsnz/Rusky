@@ -1,15 +1,26 @@
 [package]
-name = "rusky-core"
+name = "rusky"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
+[lib]
+crate-type = ["staticlib", "lib"]
 [dependencies]
-futures = "0.3.17"
-rusky-core-macros = { path = "./macros" }
+# TODO: Rusky API.
+mlua = { version = "0.6.5", features = ["luajit", "lua-src"] }
+rusky-core = { path = "../../rusky-core" }
+rusky-utils = { path = "../../rusky-utils" }
+
+tokio = { version = "1.12.0", features = ["macros", "rt-multi-thread"] }
+log = "0.4"
+fern = "0.6"
+
+chrono = "0.4.19"
+tempfile = "3.2.0"
 tracing = "0.1.29"
-tokio = { version = "1", features = ["rt-multi-thread", "macros"]}
+yansi = "0.5.0"
+
 
 [dependencies.serenity]
 default-features = false

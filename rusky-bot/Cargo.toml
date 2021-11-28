@@ -1,34 +1,8 @@
 [package]
-name = "rusky"
+name = "rusky-bot"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-# TODO: Rusky API.
-mlua = { version = "0.6.5", features = ["luajit"] }
+rusky = { path = "./rusky" }
 rusky-core = { path = "../rusky-core" }
-tokio = { version = "1.12.0", features = ["macros", "rt-multi-thread"] }
-log = "0.4"
-fern = "0.6"
 rusky-utils = { path = "../rusky-utils" }
-chrono = "0.4.19"
-tempfile = "3.2.0"
-tracing = "0.1.29"
-yansi = "0.5.0"
-
-
-[dependencies.serenity]
-default-features = false
-features = [
-    "builder",
-    "client",
-    "gateway",
-    "http",
-    "model",
-    "utils",
-    "rustls_backend",
-    "unstable_discord_api"
-]
-version = "0.10"

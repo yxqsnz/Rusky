@@ -1,7 +1,8 @@
 [workspace]
 members = [
 	"rusky-bot",
+	"rusky-bot/rusky",
 	"rusky-core",
-	"rusky-core-macros",
+	"rusky-core/macros",
 	"rusky-utils"
 ]

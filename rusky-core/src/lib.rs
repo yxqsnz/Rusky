@@ -1,9 +1,8 @@
 use self::commands::CommandManager;
 use crate::builders::bot::BotBuilder;
-use serenity::{prelude::EventHandler, Client};
+use serenity::{client::bridge::gateway::GatewayIntents, prelude::EventHandler, Client};
 use std::{error::Error as StdError, result::Result as StdResult, sync::Arc};
 use tokio::sync::Mutex;
-use serenity::client::bridge::gateway::GatewayIntents;
 pub type Error = Box<dyn StdError + Sync + Send>;
 pub type Result<T> = StdResult<T, Error>;
 

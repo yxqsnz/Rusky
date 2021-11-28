@@ -135,31 +135,34 @@ pub fn command(args: TokenStream, input: TokenStream) -> TokenStream {
             .emit()
     }
     quote! {
-     // yes.
-     macro_rules! __convert_os_baguios_pra_option_pq_o_caralho_do_quote_nao_mantem_o_caralho_do_option {
-        (()) => (None);
-        ($e:expr) => (Some($e.to_string()));
-     }
-     #[allow(non_camel_case_types)]
-     pub struct #s_command_name;
-     #[serenity::async_trait]
-     impl rusky_core::commands::SlashCommand for #s_command_name {
-        fn data(&self) -> rusky_core::commands::SlashCommandData {
-            rusky_core::commands::SlashCommandData {
-                name: #name.to_string(),
-                description: __convert_os_baguios_pra_option_pq_o_caralho_do_quote_nao_mantem_o_caralho_do_option!(#d),
-                // TODO: options attribute.
-                options: None,
+        // yes.
+        macro_rules! __convert_os_baguios_pra_option_pq_o_caralho_do_quote_nao_mantem_o_caralho_do_option {
+            (()) => (None);
+            ($e:expr) => (Some($e.to_string()));
+        }
+        use rusky_core::commands::SlashCommand;
+        #[allow(non_camel_case_types)]
+        pub struct #s_command_name;
+        
+        #[cfg(not(test))]
+        #[serenity::async_trait]
+        impl rusky_core::commands::SlashCommand for #s_command_name {
+            fn data(&self) -> rusky_core::commands::SlashCommandData {
+                rusky_core::commands::SlashCommandData {
+                    name: #name.to_string(),
+                    description: __convert_os_baguios_pra_option_pq_o_caralho_do_quote_nao_mantem_o_caralho_do_option!(#d),
+                    // TODO: options attribute.
+                    options: None,
+                }
+            }
+            async fn execute(&self, c: rusky_core::commands::CommandContext) -> crate::Result<()> {
+                tracing::debug!("executing function: {} at command {}", #f_name_s, self.data().name);
+                let r = #f_name(c).await?;
+                Ok(r)
             }
         }
-        async fn execute(&self, c: rusky_core::commands::CommandContext) -> crate::Result<()> {
-            tracing::info!("executing function: {} at command {}", #f_name_s,self.data().name);
-            let r = #f_name(c).await?;
-            Ok(r)
-        }   
-     }
-     // vo deixar aq quieto mesmo.
-     #f
+        // vo deixar aq quieto mesmo.
+        #f
     }
     .into()
 }

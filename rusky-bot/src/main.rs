@@ -1,4 +1,4 @@
-use rusky::{commands::*, logging};
+use rusky::{commands::*, *};
 use rusky_core::{containers::CommandManagerContainer, Bot, Result};
 use rusky_utils::config::RuskyConfig;
 use serenity::{

@@ -24,7 +24,7 @@ impl RuskyConfig {
         Ok(Figment::new()
             .merge(Toml::file("Rusky.toml"))
             .merge(Env::prefixed("RUSKY_"))
-            .merge(Json::file("Rusky.json")) 
+            .merge(Json::file("Rusky.json"))
             .merge(Yaml::file("Rusky.yml"))
             .extract()?)
     }
